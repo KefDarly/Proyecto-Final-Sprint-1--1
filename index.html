@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infografía Oficial: Sprint 1 - Comando CMD</title>
+    <title>Reporte Técnico: Sprint 3 - Comando CMD</title>
     <style>
         :root {
-            --bg-dark: #070a12;
+            --bg-dark: #030712;
             --bg-card: #0f172a;
             --bg-panel: #1e293b;
             --primary: #3b82f6;
+            --primary-glow: rgba(59, 130, 246, 0.2);
             --accent: #f59e0b;
             --success: #10b981;
             --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: #334155;
+            --text-muted: #64748b;
+            --border: #1e293b;
+            --border-hover: #334155;
         }
 
         * {
@@ -27,26 +29,26 @@
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            padding: 15px;
+            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 50% 0%, #111827 0%, #030712 100%);
         }
 
         .infographic-container {
             width: 100%;
             max-width: 1400px;
-            height: 96vh;
-            background-color: #0b1329;
-            border: 2px solid var(--border);
+            background-color: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 20px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            gap: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
         /* ENCABEZADO */
@@ -54,95 +56,103 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 16px;
         }
 
         .header-left h1 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 800;
-            letter-spacing: 0.5px;
-            background: linear-gradient(to right, #3b82f6, #60a5fa);
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #60a5fa, #3b82f6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .header-left p {
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
+            margin-top: 2px;
         }
 
         .header-right {
             text-align: right;
-            background-color: var(--bg-card);
-            padding: 6px 12px;
-            border-radius: 8px;
+            background-color: rgba(30, 41, 59, 0.5);
+            padding: 8px 16px;
+            border-radius: 10px;
             border: 1px solid var(--border);
         }
 
         .team-title {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 800;
             color: var(--accent);
+            letter-spacing: 0.5px;
         }
 
         .team-members {
             font-size: 0.75rem;
             color: var(--text-main);
-            margin-top: 2px;
-            line-height: 1.2;
+            margin-top: 4px;
+            line-height: 1.4;
         }
 
         /* GRID CONFIGURATION */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            flex-grow: 1;
-            margin-top: 12px;
-            overflow: hidden;
+            gap: 16px;
         }
 
         .col-span-3 { grid-column: span 3; }
         .col-span-2 { grid-column: span 2; }
 
         .card {
-            background-color: var(--bg-card);
+            background-color: rgba(15, 23, 42, 0.8);
             border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 14px;
+            border-radius: 12px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+        
+        .card:hover {
+            border-color: var(--border-hover);
         }
 
         .card-title {
             font-size: 0.85rem;
             font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 8px;
+            color: #93c5fd;
+            margin-bottom: 12px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         /* FASES EXPLICATIVAS ESPECÍFICAS */
         .phases-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            height: 100%;
+            gap: 12px;
         }
 
         .phase-block {
-            background-color: #162238;
-            border-radius: 8px;
-            padding: 10px;
+            background-color: #111827;
+            border-radius: 10px;
+            padding: 12px;
             border-top: 4px solid var(--primary);
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
+            transition: transform 0.2s ease;
+        }
+
+        .phase-block:hover {
+            transform: translateY(-2px);
         }
 
         .phase-block.f1 { border-top-color: #3b82f6; }
@@ -151,7 +161,7 @@
         .phase-block.f4 { border-top-color: #ec4899; }
 
         .phase-block h3 {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-main);
             font-weight: 700;
         }
@@ -162,122 +172,149 @@
         }
 
         .phase-block li {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-bottom: 4px;
-            line-height: 1.2;
+            font-size: 0.72rem;
+            color: #94a3b8;
+            margin-bottom: 6px;
+            line-height: 1.3;
             position: relative;
-            padding-left: 10px;
+            padding-left: 12px;
         }
 
         .phase-block li::before {
             content: "•";
-            color: var(--accent);
+            color: var(--primary);
             position: absolute;
             left: 0;
+            font-weight: bold;
         }
 
         /* PROMPTS Y CUADROS ACCESORIOS */
         .prompt-box {
-            background-color: #090d16;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 0.72rem;
-            margin-bottom: 6px;
+            background-color: #030712;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            margin-bottom: 8px;
             border-left: 3px solid var(--primary);
         }
-        .prompt-box strong { color: var(--text-main); display: block; margin-bottom: 2px;}
-        .prompt-box code { color: #38bdf8; font-family: monospace; }
+        .prompt-box:last-child { margin-bottom: 0; }
+        .prompt-box strong { color: var(--text-main); display: block; margin-bottom: 4px;}
+        .prompt-box code { color: #38bdf8; font-family: monospace; background: rgba(56, 189, 248, 0.05); padding: 2px 4px; border-radius: 4px; }
 
         /* TABLA INTEGRANTES PARTICIPACIÓN */
         .table-container {
             width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
         }
 
         .matrix-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
         }
 
         .matrix-table th {
-            background-color: #1e293b;
-            color: var(--text-muted);
-            padding: 6px;
+            background-color: #111827;
+            color: #94a3b8;
+            padding: 8px;
             text-align: left;
+            font-weight: 600;
+            border-radius: 4px;
         }
 
         .matrix-table td {
-            padding: 6px;
+            padding: 8px;
             border-bottom: 1px solid var(--border);
         }
 
         .badge {
-            background-color: rgba(16, 185, 129, 0.15);
+            background-color: rgba(16, 185, 129, 0.1);
             color: var(--success);
-            padding: 1px 5px;
-            border-radius: 8px;
-            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.7rem;
         }
-        .badge.danger { background-color: rgba(239, 68, 68, 0.15); color: #ef4444; }
+        .badge.danger { background-color: rgba(239, 68, 68, 0.1); color: #ef4444; }
 
         /* ENLACES DIRECTOS RECTOS */
         .links-row {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
         }
 
         .link-card {
-            background-color: #131c2e;
+            background-color: #111827;
             border: 1px solid var(--border);
-            padding: 10px;
-            border-radius: 8px;
+            padding: 12px;
+            border-radius: 10px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            align-items: center;
-            text-align: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
         }
 
         .link-card h4 {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: var(--text-main);
         }
 
         .link-card p {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            margin-bottom: 6px;
+            font-size: 0.68rem;
+            color: #94a3b8;
+            line-height: 1.2;
         }
 
         .direct-url {
             color: #38bdf8;
             font-size: 0.65rem;
             word-break: break-all;
-            margin-bottom: 8px;
             font-family: monospace;
             display: block;
+            opacity: 0.7;
         }
 
         .btn-direct {
-            background-color: var(--primary);
-            color: white;
+            background-color: #1e293b;
+            color: var(--text-main);
             text-decoration: none;
-            font-size: 0.68rem;
-            padding: 6px;
-            border-radius: 4px;
+            font-size: 0.7rem;
+            padding: 8px;
+            border-radius: 6px;
             font-weight: 700;
-            width: 100%;
-            display: block;
+            text-align: center;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border);
         }
 
-        .btn-direct:hover { background-color: #1d4ed8; }
-        .link-card.v-live { border-color: var(--success); }
-        .link-card.v-live .btn-direct { background-color: var(--success); }
-        .link-card.v-live .btn-direct:hover { background-color: #059669; }
+        .btn-direct:hover { 
+            background-color: var(--primary); 
+            border-color: var(--primary);
+        }
+        
+        .link-card.v-live { border-color: rgba(16, 185, 129, 0.4); background: linear-gradient(180deg, #111827 0%, rgba(16, 185, 129, 0.05) 100%); }
+        .link-card.v-live .btn-direct { background-color: var(--success); border-color: var(--success); }
+        .link-card.v-live .btn-direct:hover { background-color: #059669; border-color: #059669; }
+
+        @media (max-width: 1024px) {
+            .info-grid { grid-template-columns: 1fr; }
+            .col-span-3, .col-span-2 { grid-column: span 1; }
+            .phases-container { grid-template-columns: repeat(2, 1fr); }
+            .links-row { grid-template-columns: repeat(2, 1fr); }
+            body { height: auto; padding: 10px; }
+        }
     </style>
 </head>
 <body>
@@ -287,7 +324,7 @@
         <header>
             <div class="header-left">
                 <h1>Reporte de Ingeniería y Despliegue Técnico</h1>
-                <p>UAC • Proyecto Final del Sistema de Información de Monitoreo para Carga Ancha (PetroMapi SAC) — Sprint 1</p>
+                <p>UAC • Proyecto Final del Sistema de Información de Monitoreo para Carga Ancha (PetroMapi SAC) — Sprint 3</p>
             </div>
             <div class="header-right">
                 <div class="team-title">EQUIPO: COMANDO CMD</div>
@@ -301,38 +338,38 @@
         <div class="info-grid">
 
             <div class="card col-span-3">
-                <div class="card-title">🔄 Fases Específicas del Informe Metodológico</div>
+                <div class="card-title">🔄 Fases Avanzadas del Informe Metodológico (Evolución Sprint 3)</div>
                 <div class="phases-container">
                     
                     <div class="phase-block f1">
                         <h3>1. Empatizar y Definir</h3>
                         <ul>
-                            <li><strong>Entorno Operativo:</strong> Se mapearon rutas críticas Cusco-Huaypetue (385 km) y Cusco-La Ventanilla (1150 km).</li>
-                            <li><strong>Definición del Problema:</strong> Pérdida de trazabilidad por registros de combustible manuales y desfases en viáticos.</li>
+                            <li><strong>Consolidación de Rutas:</strong> Pruebas estresadas en rutas Cusco-Huaypetue y Ventanilla con geocercas activas.</li>
+                            <li><strong>Mapeo Final:</strong> Sustitución completa de las auditorías manuales por alertas automáticas de desviación.</li>
                         </ul>
                     </div>
 
                     <div class="phase-block f2">
-                        <h3>2. Idear (Miro)</h3>
+                        <h3>2. Idear e Integrar</h3>
                         <ul>
-                            <li><strong>Arquitectura Lógica:</strong> Estructuración de prioridades funcionales en el tablero colaborativo Miro.</li>
-                            <li><strong>Módulos Críticos:</strong> Definición de relaciones clave para consumo, alertas de telemetría e incidencias.</li>
+                            <li><strong>Refinamiento de Arquitectura:</strong> Estabilización de esquemas lógicos y lógica de negocio para multi-roles.</li>
+                            <li><strong>Módulos Robustos:</strong> Relación madura entre consumo real de combustible, reportes de viáticos e incidencias.</li>
                         </ul>
                     </div>
 
                     <div class="phase-block f3">
-                        <h3>3. Prototipar</h3>
+                        <h3>3. Prototipar a Producción</h3>
                         <ul>
-                            <li><strong>Google Stitch:</strong> Construcción rápida de maquetas UI limpias con paleta azul marino institucional.</li>
-                            <li><strong>Base de Datos:</strong> Modelado del esquema relacional de entidades para Empresa y Vehículos.</li>
+                            <li><strong>Fidelidad UI/UX:</strong> Evolución de maquetas estáticas a componentes dinámicos con flujos limpios.</li>
+                            <li><strong>Persistencia de Datos:</strong> Migración de estructuras de almacenamiento simuladas hacia arquitecturas integradas.</li>
                         </ul>
                     </div>
 
                     <div class="phase-block f4">
-                        <h3>4. Testear y Desarrollar</h3>
+                        <h3>4. Pruebas y Despliegue</h3>
                         <ul>
-                            <li><strong>Persistencia Local:</strong> Programación de lógica CRUD usando almacenamiento dinámico en localStorage.</li>
-                            <li><strong>DevOps Integrado:</strong> Control de versiones en GitHub con automatización CI/CD hacia la nube.</li>
+                            <li><strong>QA Integrado:</strong> Control total de validación de entradas de datos, placas vehiculares y sesiones simultáneas.</li>
+                            <li><strong>Automatización DevOps:</strong> Integración continua activa (CI/CD) con builds estables optimizados.</li>
                         </ul>
                     </div>
 
@@ -340,18 +377,18 @@
             </div>
 
             <div class="card col-span-2">
-                <div class="card-title">🤖 Ingeniería de Prompts (Google AI Studio - Gemini 1.5 Pro)</div>
+                <div class="card-title">🤖 Ingeniería de Prompts Avanzada (Google AI Studio - Gemini 1.5 Pro)</div>
                 <div class="prompt-box">
-                    <strong>Prompt 1: Inicialización Lógica Estructural</strong>
-                    <code>"Genera sistema web para PetroMapi con login simulado y 3 roles independientes usando código estructurado..."</code>
+                    <strong>Prompt 1: Optimización de Arquitectura y Roles</strong>
+                    <code>"Refactoriza el sistema de control de PetroMapi integrando middlewares de validación de roles en la sesión activa..."</code>
                 </div>
                 <div class="prompt-box">
-                    <strong>Prompt 2: Adaptabilidad y Diseño Responsivo</strong>
-                    <code>"Modifica las tablas de control añadiendo scroll horizontal y propiedades flexbox para cabinas de camiones..."</code>
+                    <strong>Prompt 2: Persistencia Avanzada y Alertas</strong>
+                    <code>"Escribe lógica para sincronizar los estados locales de incidencias críticas de camiones con notificaciones en tiempo real..."</code>
                 </div>
                 <div class="prompt-box">
-                    <strong>Prompt 3: Control y Persistencia del Negocio</strong>
-                    <code>"Crea el script del formulario de registro vehicular validando la placa y guardando los campos en localStorage..."</code>
+                    <strong>Prompt 3: Control de Negocio y Robustez</strong>
+                    <code>"Genera scripts de validación con expresiones regulares estrictas para placas de carga pesada y el cálculo preciso de combustible..."</code>
                 </div>
             </div>
 
@@ -393,41 +430,50 @@
             </div>
 
             <div class="card col-span-3">
-                <div class="card-title">🔗 Direcciones y Enlaces Directos del Proyecto</div>
+                <div class="card-title">🔗 Direcciones y Enlaces Directos del Ciclo de Vida del Proyecto</div>
                 <div class="links-row">
                     
                     <div class="link-card">
                         <div>
                             <h4>Google Stitch</h4>
                             <p>Prototipado UI de la Solución</p>
-                            <span class="direct-url">https://stitch.withgoogle.com/projects/...</span>
+                            <span class="direct-url">.../projects/31969455956...</span>
                         </div>
                         <a href="https://stitch.withgoogle.com/projects/3196945595662264848" target="_blank" class="btn-direct">Abrir Prototipo</a>
                     </div>
 
+                    <div class="link-card">
+                        <div>
+                            <h4>Vercel (Sprint 2)</h4>
+                            <p>Despliegue e Historial Intermedio</p>
+                            <span class="direct-url">proyecto-final-sprin-2.vercel.app</span>
+                        </div>
+                        <a href="https://proyecto-final-sprin-2.vercel.app/" target="_blank" class="btn-direct">Ver Sprint 2</a>
+                    </div>
+
                     <div class="link-card v-live">
                         <div>
-                            <h4>Vercel (Live App)</h4>
-                            <p>Aplicación Web Desplegada</p>
-                            <span class="direct-url">https://proyecto-final-sprint-1-somz.vercel.app</span>
+                            <h4>Vercel (Sprint 3)</h4>
+                            <p>Aplicación Web Producción Final</p>
+                            <span class="direct-url">proyecto-final-sprint-1-somz.vercel.app</span>
                         </div>
-                        <a href="https://proyecto-final-sprint-1-somz.vercel.app" target="_blank" class="btn-direct">Visitar Web</a>
+                        <a href="https://proyecto-final-sprint-1-somz.vercel.app" target="_blank" class="btn-direct">Visitar App</a>
                     </div>
 
                     <div class="link-card">
                         <div>
                             <h4>GitHub Repository</h4>
-                            <p>Código Fuente y Scripts</p>
-                            <span class="direct-url">https://github.com/KefDarly/...</span>
+                            <p>Código Fuente y Ramas de Trabajo</p>
+                            <span class="direct-url">github.com/KefDarly/...</span>
                         </div>
-                        <a href="https://github.com/KefDarly/Proyecto-Final-Sprint-1" target="_blank" class="btn-direct">Ver Repositorio</a>
+                        <a href="https://github.com/KefDarly/Proyecto-Final-Sprint-1" target="_blank" class="btn-direct">Ver Código</a>
                     </div>
 
                     <div class="link-card">
                         <div>
                             <h4>Google AI Studio</h4>
                             <p>Entorno de Ingeniería Core</p>
-                            <span class="direct-url">https://aistudio.google.com</span>
+                            <span class="direct-url">aistudio.google.com</span>
                         </div>
                         <a href="https://aistudio.google.com" target="_blank" class="btn-direct">Ir a AI Studio</a>
                     </div>
